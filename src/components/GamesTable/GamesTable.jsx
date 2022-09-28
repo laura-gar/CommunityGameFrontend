@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react'
 import { AgGridReact } from 'ag-grid-react';
+import React, { useCallback, useState } from 'react';
 
 import 'ag-grid-community/styles/ag-grid.css';
+import 'ag-grid-community/styles/ag-theme-alpine.min.css';
 
 function GamesTable(props) {
+    const pageSize = 10;
     const [games, setGames] = useState([]);
 
     const [columnDefs] = useState([
@@ -12,19 +14,39 @@ function GamesTable(props) {
         { field: 'updatedAt', sortable: true, suppressMovable: true }
     ]);
 
-    useEffect(() => {
-        fetch('games')
-            .then(result => result.json())
-            .then(games => {
-                setGames(games);
-            });
+    const onGridReady = useCallback(({ api }) => {
+        const dataSource = {
+            getRows: ({ startRow, endRow, successCallback, failCallback }) => {
+                const numRequiredGames = endRow - startRow;
+                const requestedPage = endRow / numRequiredGames;
+                fetch('games?' + new URLSearchParams({
+                    limit: numRequiredGames,
+                    page: requestedPage,
+                }))
+                    .then(result => result.json())
+                    .then(
+                        games => {
+                            successCallback(games, null);
+                        },
+                        error => {
+                            console.log(error);
+                            failCallback();
+                        }
+                    );
+            }
+        };
+        api.setDatasource(dataSource);
     }, []);
 
     return (
-        <div style={{ height: 400, width: 600 }}>
+        <div className='ag-theme-alpine' style={{ height: 400, width: 600 }}>
             <AgGridReact
                 rowData={games}
-                columnDefs={columnDefs}>
+                columnDefs={columnDefs}
+                paginationPageSize={pageSize}
+                pagination={true}
+                rowModelType={'infinite'}
+                onGridReady={onGridReady} >
             </AgGridReact>
         </div>
     );
