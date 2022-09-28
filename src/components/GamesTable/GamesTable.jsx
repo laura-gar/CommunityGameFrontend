@@ -158,9 +158,9 @@ function GamesTable(props) {
     ]);
 
     const [columnDefs] = useState([
-        { field: 'title' },
-        { field: 'platform' },
-        { field: 'updatedAt' }
+        { field: 'title', sortable: true },
+        { field: 'platform', sortable: true },
+        { field: 'updatedAt', sortable: true }
     ])
 
     return (
