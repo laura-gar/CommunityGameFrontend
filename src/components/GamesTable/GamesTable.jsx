@@ -1,8 +1,9 @@
 import { AgGridReact } from 'ag-grid-react';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.min.css';
+import './GamesTable.css';
 
 function GamesTable(props) {
     const pageSize = 10;
