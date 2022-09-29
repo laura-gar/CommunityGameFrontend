@@ -8,6 +8,7 @@ import './GamesTable.css';
 function GamesTable(props) {
     const pageSize = 10;
     const [games, setGames] = useState([]);
+    const gridRef = useRef();
 
     const [columnDefs] = useState([
         { field: 'title', sortable: true, suppressMovable: true },
@@ -40,16 +41,25 @@ function GamesTable(props) {
         api.setDatasource(dataSource);
     }, []);
 
+    const onRowSelection = useCallback(({ api }) => {
+        const selectedGames = gridRef.current.api.getSelectedRows();
+        console.log(selectedGames);
+    }, []);
+
     return (
         <div className='ag-theme-alpine' style={{ height: '100%', width: '100%' }}>
             <AgGridReact
+                ref={gridRef}
                 rowData={games}
                 columnDefs={columnDefs}
                 paginationPageSize={pageSize}
                 pagination={true}
                 rowModelType={'infinite'}
                 onGridReady={onGridReady}
-                domLayout='autoHeight' >
+                domLayout='autoHeight'
+                rowSelection={'single'}
+                onSelectionChanged={onRowSelection}
+            >
             </AgGridReact>
         </div>
     );
