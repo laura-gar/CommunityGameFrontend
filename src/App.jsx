@@ -4,6 +4,7 @@ import {
   BrowserRouter, Route, Routes
 } from "react-router-dom";
 import './App.css';
+import GamesList from './components/GamesList/GamesList';
 import { AuthProvider, RequireAuth } from "./hooks/useAuth";
 import Login from './views/Login/Login';
 
@@ -23,7 +24,7 @@ function App() {
                   path={'/games'}
                   element={
                     <RequireAuth>
-                      <div>Games</div>
+                      <GamesList />
                     </RequireAuth>
                   } />
               </Routes>
