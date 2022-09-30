@@ -1,6 +1,8 @@
 import { postRequest } from "../Requests/requestService";
 
 const USER_KEY = "user";
+const URL = process.env.REACT_APP_BASE_URL; 
+console.log(URL); 
 
 class AuthService {
     login(username, password, onSuccess, onError) {
@@ -23,8 +25,17 @@ class AuthService {
 
     }
 
-    register(username, email, password) {
-
+    register(username, email, password, onSuccess, onError) {
+        const body = {
+            email, username, password
+        }
+        return postRequest(
+            `${URL}/signup`, 
+            body, 
+            userInfo => {
+                onSuccess(userInfo); 
+            },
+            onError); 
     }
 
     getCurrentUser() {

@@ -28,8 +28,17 @@ function useAuthProvider() {
 
     };
 
-    const register = () => {
-
+    const register = (username, email, password, onSuccess, onError) => {
+        return authService
+            .register(
+                username,
+                email,
+                password,
+                (userInfo) => {
+                    console.log('User info:', userInfo); 
+                    onSuccess(userInfo); 
+                },
+                onError); 
     };
 
     return { user, login, logout, register };

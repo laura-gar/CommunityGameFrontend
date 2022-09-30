@@ -6,6 +6,8 @@ import {
 import './App.css';
 import { AuthProvider, RequireAuth } from "./hooks/useAuth";
 import Login from './views/Login/Login';
+import SignUp from './views/SignUp/SignUp';
+
 
 
 function App() {
@@ -18,7 +20,7 @@ function App() {
             <BrowserRouter>
               <Routes>
                 <Route path={'/login'} element={<Login />} />
-                <Route path={'/signup'} element={<div></div>} />
+                <Route path={'/signup'} element={<SignUp />} />
                 <Route
                   path={'/games'}
                   element={
