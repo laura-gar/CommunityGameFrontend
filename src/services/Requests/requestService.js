@@ -2,8 +2,8 @@ const request = (url, params = {}, method = 'GET', onSuccess = null, onError = n
     let options = {
         method,
         headers: {
-            'Content-Type': 'application/json'
-
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
         }
     };
     if ('GET' === method) {
