@@ -1,11 +1,17 @@
 const request = (url, params = {}, method = 'GET', onSuccess = null, onError = null, header = null) => {
+    console.log(typeof header); 
     let options = {
         method,
         headers: {
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
         }
     };
+
+    if(header != null){
+        options.headers['user-id'] = header; 
+    }
+
+
     if ('GET' === method) {
         url += '?' + new URLSearchParams(params);
     } else {

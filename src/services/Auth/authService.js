@@ -20,6 +20,10 @@ class AuthService {
     }
 
     logout(onSuccess, onError) {
+        let evalData = JSON.parse(localStorage.getItem("user")); 
+        console.log(evalData);
+        const header = evalData.id; 
+        console.log(header);
         return postRequest(
             `${URL}/logout`, 
             {},
@@ -27,7 +31,7 @@ class AuthService {
               localStorage.clear(); 
             },
             onError, 
-            localStorage.getItem("id")
+            header, 
             ); 
     }
 
