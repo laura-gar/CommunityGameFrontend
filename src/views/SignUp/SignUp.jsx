@@ -4,12 +4,36 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import Header from '../../components/Header/Header';
+import Swal  from 'sweetalert2'; 
 
 export default function SignUp() {
     const auth = useAuth(); 
     const navigateTo = useNavigate(); 
     let from = window.location.state?.from?.pathname || "/login";
 
+
+    const welcomeMessage = () => {
+        Swal.fire({
+            title: 'Welcome to TekkenGames!',
+            confirmButtonText: 'Go to Log In',
+            text: 'Lets go to Login',
+            showCloseButton: true
+        })
+        .then(function (result) {
+            if (result.value) {
+                window.location = "/login";
+            }
+        })
+    }
+
+    const errorMessage = (message) => {
+        Swal.fire({
+            title: 'Fail',
+            confirmButtonText: 'Ok',
+            text: message,
+            showCloseButton: true
+        })
+    }
 
     function handleSubmit() {
         const form = document.getElementById('form'); 
@@ -23,11 +47,13 @@ export default function SignUp() {
             email, 
             password, 
             () => {
-                navigateTo(from, {replace:true}); 
+                welcomeMessage(); 
             },
             (error) => {
-                console.log("Error", error); 
+                errorMessage(error.message); 
+                console.log("Error", error.message); 
             }); 
+        
     }
 
    return (
@@ -72,12 +98,12 @@ export default function SignUp() {
                     </form>
 
                     <div id='links' className='p-4'>
-                    <button 
-                        id="gButton" 
-                        type="submit" 
-                        class="btn btn-primary"
-                        onClick={() => handleSubmit()}
-                        >Sign Up
+                        <button 
+                            id="gButton" 
+                            type="submit" 
+                            class="btn btn-primary"
+                            onClick={() => handleSubmit()}
+                            >Sign Up
                         </button>
                         <p>Already member? <Link to="/login">Sign up</Link></p>
                     </div>
