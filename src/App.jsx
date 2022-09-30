@@ -4,6 +4,7 @@ import {
   BrowserRouter, Route, Routes
 } from "react-router-dom";
 import './App.css';
+import TopNavBar from './components/TopNavBar/TopNavBar';
 import { AuthProvider, RequireAuth } from "./hooks/useAuth";
 import Login from './views/Login/Login';
 
@@ -19,6 +20,7 @@ function App() {
               <Routes>
                 <Route path={'/login'} element={<Login />} />
                 <Route path={'/signup'} element={<div></div>} />
+                <Route path={'/topnavbar'} element={<TopNavBar />} />
                 <Route
                   path={'/games'}
                   element={

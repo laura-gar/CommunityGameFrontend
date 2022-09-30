@@ -1,8 +1,9 @@
-const request = (url, params = {}, method = 'GET', onSuccess = null, onError = null) => {
+const request = (url, params = {}, method = 'GET', onSuccess = null, onError = null, header = null) => {
     let options = {
         method,
         headers: {
             'Content-Type': 'application/json'
+
         }
     };
     if ('GET' === method) {
@@ -40,4 +41,4 @@ const request = (url, params = {}, method = 'GET', onSuccess = null, onError = n
 };
 
 export const getRequest = (url, params, onSuccess, onError) => request(url, params, 'GET', onSuccess, onError);
-export const postRequest = (url, body, onSuccess, onError) => request(url, body, 'POST', onSuccess, onError);
+export const postRequest = (url, body, onSuccess, onError, header) => request(url, body, 'POST', onSuccess, onError, header);

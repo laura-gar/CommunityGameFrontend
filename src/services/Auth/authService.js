@@ -19,8 +19,16 @@ class AuthService {
             onError);
     }
 
-    logout() {
-
+    logout(onSuccess, onError) {
+        return postRequest(
+            '/logout', 
+            {},
+            () => {
+              localStorage.clear(); 
+            },
+            onError, 
+            localStorage.getItem("id")
+            ); 
     }
 
     register(username, email, password) {
