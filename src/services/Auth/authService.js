@@ -1,7 +1,7 @@
 import { postRequest } from "../Requests/requestService";
 
 const USER_KEY = "user";
-
+const URL = process.env.REACT_APP_BASE_URL; 
 class AuthService {
     login(username, password, onSuccess, onError) {
         const body = {
@@ -21,7 +21,7 @@ class AuthService {
 
     logout(onSuccess, onError) {
         return postRequest(
-            '/logout', 
+            `${URL}/logout`, 
             {},
             () => {
               localStorage.clear(); 
