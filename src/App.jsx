@@ -4,7 +4,7 @@ import {
   BrowserRouter, Route, Routes
 } from "react-router-dom";
 import './App.css';
-import GamesList from './components/GamesList/GamesList';
+import GamesList from './components/Games/GamesList/GamesList';
 import { AuthProvider, RequireAuth } from "./hooks/useAuth";
 import Login from './views/Login/Login';
 
