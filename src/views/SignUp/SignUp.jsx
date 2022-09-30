@@ -21,7 +21,7 @@ export default function SignUp() {
         })
         .then(function (result) {
             if (result.value) {
-                window.location = "/login";
+                navigateTo("/login"); 
             }
         })
     }
