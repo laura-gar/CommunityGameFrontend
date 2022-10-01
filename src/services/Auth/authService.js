@@ -1,7 +1,6 @@
 import { postRequest } from "../Requests/requestService";
 
 const USER_KEY = "user";
-const URL = process.env.REACT_APP_BASE_URL; 
 class AuthService {
     login(username, password, onSuccess, onError) {
         const body = {
@@ -21,11 +20,9 @@ class AuthService {
 
     logout(onSuccess, onError) {
         let evalData = JSON.parse(localStorage.getItem("user")); 
-        console.log(evalData);
         const header = evalData.id; 
-        console.log(header);
         return postRequest(
-            `${URL}/logout`, 
+            `/logout`, 
             {},
             (userInfo) => {
               localStorage.clear(); 
