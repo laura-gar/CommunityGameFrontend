@@ -33,8 +33,17 @@ class AuthService {
             ); 
     }
 
-    register(username, email, password) {
-
+    register(username, email, password, onSuccess, onError) {
+        const body = {
+            email, username, password
+        }
+        return postRequest(
+            `${URL}/signup`, 
+            body, 
+            userInfo => {
+                onSuccess(userInfo); 
+            },
+            onError); 
     }
 
     getCurrentUser() {
