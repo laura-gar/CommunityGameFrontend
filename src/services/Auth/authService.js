@@ -38,7 +38,7 @@ class AuthService {
             email, username, password
         }
         return postRequest(
-            `${URL}/signup`, 
+            `/signup`, 
             body, 
             userInfo => {
                 onSuccess(userInfo); 

@@ -49,18 +49,6 @@ const request = (url, params = {}, method = 'GET', onSuccess = null, onError = n
             }, 
             handleError)       
         .then(handleSuccess, handleError);
-
-        // .then(
-        //     (response) => {
-        //         let jsonPromise = response.json();
-        //         if (!response.ok) {
-        //             return jsonPromise.then(Promise.reject.bind(Promise));
-        //         }
-        //         return jsonPromise;
-        //     },
-        //     handleError
-        // )
-        // .then(handleSuccess, handleError);
 };
 
 export const getRequest = (url, params, onSuccess, onError) => request(url, params, 'GET', onSuccess, onError);

@@ -9,9 +9,17 @@ import { useAuth } from '../../hooks/useAuth';
 export default function TopNavBar() {
     const auth = useAuth(); 
     const navigateTo = useNavigate();
-    let evalData = JSON.parse(localStorage.getItem("user")); 
-    const user = evalData.username; 
-
+    let isLogged = false; 
+    let user; 
+   
+    if(localStorage.getItem("user") !== null){
+        let evalData = JSON.parse(localStorage.getItem("user")); 
+        user = evalData.username; 
+        console.log(evalData); 
+        let isLogged = true; 
+        console.log(isLogged); 
+    }
+        
     function handleSubmit() {
         auth.logout(
             () => {
@@ -23,20 +31,23 @@ export default function TopNavBar() {
         )
     }
 
-    return (
-        <Navbar variant="dark" id="topNavBar" className='h-50 py-4'>
-        <Container>
-            <Navbar.Brand className="col-8">TekkenGames</Navbar.Brand>
-            <Navbar.Toggle />
-            <Navbar.Collapse className="d-flex flex-row justify-content-between">
-            <Navbar.Text>
-                Signed in as: <span>{user}</span> 
-                <BsPerson></BsPerson>
-            </Navbar.Text>
-            <Button id="logOutButton" variant="dark" onClick={() => handleSubmit()}>Sign out</Button>
-            </Navbar.Collapse>
-        </Container>
-    </Navbar>
+    return(
+        <>
+        <Navbar variant="dark" id="topNavBar" className='h-25 py-4'>
+            <Container>
+                <Navbar.Brand className="col-8">TekkenGames</Navbar.Brand>
+                <Navbar.Toggle />
+                <Navbar.Collapse className="d-flex flex-row justify-content-between">
+                <Navbar.Text>
+                    Signed in as: <span>{user}</span> 
+                    <BsPerson></BsPerson>
+                </Navbar.Text>
+                <Button id="logOutButton" variant="dark" onClick={() => handleSubmit()}>Sign out</Button>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
+        
+        </>
     )
 
 }
