@@ -14,7 +14,7 @@ function ReviewList({ gameId }) {
             }
         );
     })
-    const reviewsToRender = reviews.map((reviewData) => <Review key={gameId} review={reviewData} />);
+    const reviewsToRender = reviews.map((reviewData) => <Review key={reviewData.id} review={reviewData} />);
     return (
         <div className='card p-5'>
             <div className="row mb-4">
