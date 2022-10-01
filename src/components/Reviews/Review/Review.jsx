@@ -1,4 +1,5 @@
 import React from 'react'
+import DeleteReview from '../DeleteReview/DeleteReview'
 
 function Review({ review }) {
     return (
@@ -6,7 +7,7 @@ function Review({ review }) {
             <div className="row">
                 <div className="col d-flex justify-content-end">
                     <p>Edit</p>
-                    <p>Delete</p>
+                    <DeleteReview/>
                 </div>
             </div>
             <div className="row d-flex align-items-center">

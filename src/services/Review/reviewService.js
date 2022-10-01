@@ -9,6 +9,7 @@ class ReviewService {
             onSuccess,
             onError);
     }
+
 }
 
 export default new ReviewService();
