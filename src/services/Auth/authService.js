@@ -27,8 +27,9 @@ class AuthService {
         return postRequest(
             `${URL}/logout`, 
             {},
-            () => {
+            (userInfo) => {
               localStorage.clear(); 
+              onSuccess(userInfo); 
             },
             onError, 
             header, 

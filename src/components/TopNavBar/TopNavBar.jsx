@@ -16,7 +16,7 @@ export default function TopNavBar() {
     function handleSubmit() {
         auth.logout(
             () => {
-                navigateTo(from, { replace: true })
+                navigateTo("/login"); 
             }, 
             (error) => {
                 console.log("Error", error); 

@@ -35,15 +35,32 @@ const request = (url, params = {}, method = 'GET', onSuccess = null, onError = n
     return fetch(url, options)
         .then(
             (response) => {
-                let jsonPromise = response.json();
-                if (!response.ok) {
-                    return jsonPromise.then(Promise.reject.bind(Promise));
+                let textPromise = response.text();
+                if(!response.ok){
+                    return textPromise.then(Promise.reject.bind(Promise));
                 }
-                return jsonPromise;
-            },
+                return textPromise; 
+            }, 
             handleError
         )
+        .then(
+            (text) => {
+                return text.length > 0 ? JSON.parse(text) : text; 
+            }, 
+            handleError)       
         .then(handleSuccess, handleError);
+
+        // .then(
+        //     (response) => {
+        //         let jsonPromise = response.json();
+        //         if (!response.ok) {
+        //             return jsonPromise.then(Promise.reject.bind(Promise));
+        //         }
+        //         return jsonPromise;
+        //     },
+        //     handleError
+        // )
+        // .then(handleSuccess, handleError);
 };
 
 export const getRequest = (url, params, onSuccess, onError) => request(url, params, 'GET', onSuccess, onError);
