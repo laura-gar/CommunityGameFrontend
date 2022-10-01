@@ -1,0 +1,7 @@
+.ag-theme-alpine {
+    --ag-background-color: rgba(0, 0, 0, 0.0);
+    --ag-foreground-color: white;
+    --ag-header-background-color: rgba(0, 0, 0, 0.0);
+    --ag-odd-row-background-color: rgba(0, 0, 0, 0.0);
+    --ag-borders: none;
+}
