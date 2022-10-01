@@ -3,9 +3,11 @@ import React, { useCallback, useRef, useState } from 'react';
 
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.min.css';
-import './GamesTable.css';
+import { useNavigate } from 'react-router-dom';
+import gameService from '../../../services/Games/gameService';
 
-function GamesTable(props) {
+function GamesTable({ onGameSelection }) {
+    const navigateTo = useNavigate();
     const pageSize = 10;
     const [games, setGames] = useState([]);
     const gridRef = useRef();
@@ -22,28 +24,29 @@ function GamesTable(props) {
             getRows: ({ startRow, endRow, successCallback, failCallback }) => {
                 const numRequiredGames = endRow - startRow;
                 const requestedPage = endRow / numRequiredGames;
-                fetch('games?' + new URLSearchParams({
-                    limit: numRequiredGames,
-                    page: requestedPage,
-                }))
-                    .then(result => result.json())
-                    .then(
-                        games => {
-                            successCallback(games, null);
-                        },
-                        error => {
-                            console.log(error);
-                            failCallback();
-                        }
-                    );
+                gameService.getGames(
+                    {
+                        limit: numRequiredGames,
+                        page: requestedPage,
+                    },
+                    games => {
+                        successCallback(games, null);
+                    },
+                    error => {
+                        console.log(error);
+                        failCallback();
+                    }
+                );
             }
         };
         api.setDatasource(dataSource);
     }, []);
 
-    const onRowSelection = useCallback(({ api }) => {
+    const onRowSelection = useCallback(() => {
         const selectedGames = gridRef.current.api.getSelectedRows();
-        console.log(selectedGames);
+        const game = selectedGames[0];
+        onGameSelection(game);
+        navigateTo(`/games/${game.id}`);
     }, []);
 
     return (
