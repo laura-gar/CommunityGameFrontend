@@ -7,7 +7,7 @@ function Review({ review }) {
             <div className="row">
                 <div className="col d-flex justify-content-end">
                     <p>Edit</p>
-                    <DeleteReview/>
+                    <DeleteReview reviewId={review.id}/>
                 </div>
             </div>
             <div className="row d-flex align-items-center">
