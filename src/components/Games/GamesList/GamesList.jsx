@@ -1,11 +1,11 @@
 import React from 'react'
 import GamesTable from '../GamesTable/GamesTable'
 
-function GamesList(props) {
+function GamesList({ onGameSelection }) {
     return (
         <div>
             <h2>List of Games</h2>
-            <GamesTable />
+            <GamesTable onGameSelection={onGameSelection} />
         </div>
     )
 }
