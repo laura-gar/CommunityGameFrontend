@@ -3,12 +3,12 @@ import ReviewModal from '../ReviewModal/ReviewModal';
 import './Review.css';
 import DeleteReview from '../DeleteReview/DeleteReview'
 
-function Review({ review }) {
+function Review({review, change}) {
     return (
         <div className='review-card card p-3 pb-5 mt-2'>
             <div className="row">
                 <div className="col d-flex justify-content-end">
-                    <p><ReviewModal gameId={review.id} review={review}/></p>
+                    <p><ReviewModal gameId={review.id} review={review} change={change}/></p>
                     <DeleteReview reviewId={review.id}/>
                 </div>
             </div>

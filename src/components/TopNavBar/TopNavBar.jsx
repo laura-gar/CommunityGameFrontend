@@ -11,7 +11,6 @@ export default function TopNavBar() {
     const navigateTo = useNavigate();
 
     const user = auth.user.username; 
-    console.log(user.username); 
         
     function handleSubmit() {
         auth.logout(

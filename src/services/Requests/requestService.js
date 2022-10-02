@@ -57,3 +57,4 @@ const request = (url, params = {}, method = 'GET', onSuccess = null, onError = n
 export const getRequest = (url, params, onSuccess, onError) => request(url, params, 'GET', onSuccess, onError);
 export const postRequest = (url, body, onSuccess, onError, header) => request(url, body, 'POST', onSuccess, onError, header);
 export const deleteRequest = (url, onSuccess, onError, header) => request(url, null, 'DELETE', onSuccess, onError, header); 
+export const putRequest = (url , body, onSuccess, onError, header) => request(url, body, 'PUT', onSuccess, onError, header); 

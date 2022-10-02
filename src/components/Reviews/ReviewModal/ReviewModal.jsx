@@ -10,7 +10,7 @@ import Swal  from 'sweetalert2';
 import { useAuth } from '../../../hooks/useAuth'
 import './ReviewModal.css';
 
-export default function ReviewModal({gameId=null, review=null}) {
+export default function ReviewModal({gameId=null, review=null, change}) {
     const reviewData = Object.assign({}, review); 
     let buttonId = "updateButton"; 
     let buttonType = <AiFillEdit />; 
@@ -30,6 +30,29 @@ export default function ReviewModal({gameId=null, review=null}) {
 
     const auth = useAuth(); 
     const userId = auth.user.id; 
+
+    const sendRequest = () => {
+        if(review){
+            updateRequest(); 
+        }
+        
+    }
+
+    const updateRequest = () => {
+        reviewService.updateReview(
+            score,
+            text, 
+            review.id, 
+            () => {
+                change(true); 
+                handleClose(); 
+                change(false); 
+            },
+            (error) => {
+                errorMessage(error.message); 
+            },
+            userId); 
+        }
 
     const errorMessage = (message) => {
         console.log(message); 
@@ -68,7 +91,7 @@ export default function ReviewModal({gameId=null, review=null}) {
             </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button type="submit" variant="primary" >
+                <Button type="submit" variant="primary" onClick={() => sendRequest()}>
                     Publish
                 </Button>
             </Modal.Footer>

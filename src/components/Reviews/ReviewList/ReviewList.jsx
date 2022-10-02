@@ -4,6 +4,7 @@ import Review from '../Review/Review';
 
 function ReviewList({ gameId }) {
     const [reviews, setReviews] = useState([]);
+    const [areReviewsChanges, setChangesReviews] = useState(false); 
     useEffect(() => {
         reviewService.getReviewsByGame(gameId,
             (reviews) => {
@@ -13,8 +14,8 @@ function ReviewList({ gameId }) {
                 console.log(error);
             }
         );
-    }, [gameId]);
-    const reviewsToRender = reviews.map((reviewData) => <Review key={reviewData.id} review={reviewData} />);
+    }, [gameId, areReviewsChanges]);
+    const reviewsToRender = reviews.map((reviewData) => <Review key={reviewData.id} review={reviewData} change={setChangesReviews}/>);
     return (
         <div className='card p-5'>
             <div className="row mb-4">
