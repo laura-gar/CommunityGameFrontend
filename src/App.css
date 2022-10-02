@@ -37,3 +37,27 @@ input.form-control:focus {
   --bs-btn-active-bg: #005a7e;
   --bs-btn-active-border-color: #005a7e;
 }
+
+.modal-body{
+  background-color: var(--bs-body-bg);
+  color: aliceblue;
+}
+
+.modal-footer{
+  background-color:var(--bs-body-bg);
+  color: #0496FF;
+}
+
+.modal-header{
+  background-color:var(--bs-body-bg);
+  color: #0496FF;
+}
+
+.form-control{
+  background-color: var(--background-color);
+  color: aliceblue; 
+}
+
+.btn-close{
+  background-color: #EF476F;
+}

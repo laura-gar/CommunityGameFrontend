@@ -1,0 +1,12 @@
+:root{
+    --background-color: #211142;
+    --delete-color: #EF476F;
+    --title-color: #0496FF;
+}
+
+#updateButton{
+    background-color: var(--title-color);
+    padding: 1px;
+    height: 30px;
+    width: 30px;
+}
