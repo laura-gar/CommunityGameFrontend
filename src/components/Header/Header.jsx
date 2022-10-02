@@ -4,7 +4,6 @@ import "bootstrap/dist/css/bootstrap.min.css"
 
 export default function Header() {
   return (
-    // <div id="header" className='col-auto'>Header</div>
     <div id="header" className='col-auto w-75 d-flex'>TekkenGames</div>
   )
 }

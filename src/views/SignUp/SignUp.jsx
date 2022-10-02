@@ -2,9 +2,9 @@ import React from 'react'
 import './SignUp.css';
 import "bootstrap/dist/css/bootstrap.min.css"
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
 import Header from '../../components/Header/Header';
 import Swal  from 'sweetalert2'; 
+import { useAuth } from '../../hooks/useAuth';
 
 export default function SignUp() {
     const auth = useAuth(); 
@@ -26,7 +26,7 @@ export default function SignUp() {
         })
     }
 
-    const errorMessage = (message) => {
+    const errorMessage = (message="Network error. Try again") => {
         Swal.fire({
             title: 'Fail',
             confirmButtonText: 'Ok',
@@ -51,45 +51,43 @@ export default function SignUp() {
             },
             (error) => {
                 errorMessage(error.message); 
-                console.log("Error", error.message); 
             }); 
-        
     }
 
    return (
-        <body id="signInScreen" className='m-0 vh-100 h-100 d-flex flex-md-column justify-content-center align-items-center'>
+        <div id="signInScreen" className='m-0 vh-100 h-100 d-flex flex-md-column justify-content-center align-items-center'>
             <Header></Header>
             <div id="signInContainer" className='col-auto h-75 w-50 d-flex justify-content-space-around '>
                 <div id="formContainer" className='h-100 w-100 p-2'>
                     <h1 className='p-3'>Sign Up</h1>
                     <form id="form" className='p-4' onSubmit={handleSubmit}>
-                        <div class="form-group">
-                            <label for="emailInput">Email address</label>
+                        <div className="form-group">
+                            <label htmlFor="emailInput">Email address</label>
                             <input 
                                 type="email" 
-                                class="form-control" 
+                                className ="form-control" 
                                 id="emailInput" 
                                 name="email"
                                 aria-describedby="emailHelp" 
                                 placeholder="Enter email"    
                                 />
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                            <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
-                        <div class="form-group">
-                            <label for="usernameInput">Username</label>
+                        <div className="form-group">
+                            <label htmlFor="usernameInput">Username</label>
                             <input 
                                 type="text" 
-                                class="form-control" 
+                                className="form-control" 
                                 id="usernameInput" 
                                 name="username"
                                 placeholder="Password"   
                                 />
                         </div>
-                        <div class="form-group">
-                            <label for="passwordInput">Password</label>
+                        <div className="form-group">
+                            <label htmlFor="passwordInput">Password</label>
                             <input 
                                 type="password" 
-                                class="form-control" 
+                                className="form-control" 
                                 id="passwordInput" 
                                 name="password"
                                 placeholder="Password"
@@ -101,7 +99,7 @@ export default function SignUp() {
                         <button 
                             id="gButton" 
                             type="submit" 
-                            class="btn btn-primary"
+                            className="btn btn-primary"
                             onClick={() => handleSubmit()}
                             >Sign Up
                         </button>
@@ -112,6 +110,6 @@ export default function SignUp() {
                     IMAGE
                 </div>
             </div>
-        </body>
+        </div>
   )
 }

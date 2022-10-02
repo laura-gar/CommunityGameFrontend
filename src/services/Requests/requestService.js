@@ -2,7 +2,7 @@ const request = (url, params = {}, method = 'GET', onSuccess = null, onError = n
     let options = {
         method,
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         }
     };
 
@@ -17,6 +17,11 @@ const request = (url, params = {}, method = 'GET', onSuccess = null, onError = n
     }
 
     const handleError = (error) => {
+        try{
+            error = JSON.parse(error); 
+        }catch(e){
+            console.log("No parse error to JSON"); 
+        }
         if (onError) {
             onError(error);
         }
@@ -43,12 +48,12 @@ const request = (url, params = {}, method = 'GET', onSuccess = null, onError = n
         )
         .then(
             (text) => {
-                return text.length > 0 ? JSON.parse(text) : text; 
+                const textResponse = text.length > 0 ? JSON.parse(text) : text;
+                return  handleSuccess(textResponse); 
             }, 
-            handleError)       
-        .then(handleSuccess, handleError);
+            handleError);     
 };
 
 export const getRequest = (url, params, onSuccess, onError) => request(url, params, 'GET', onSuccess, onError);
-export const postRequest = (url, body, onSuccess, onError) => request(url, body, 'POST', onSuccess, onError);
+export const postRequest = (url, body, onSuccess, onError, header) => request(url, body, 'POST', onSuccess, onError, header);
 export const deleteRequest = (url, onSuccess, onError, header) => request(url, null, 'DELETE', onSuccess, onError, header); 

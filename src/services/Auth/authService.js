@@ -1,9 +1,7 @@
+import { useAuth } from "../../hooks/useAuth";
 import { postRequest } from "../Requests/requestService";
 
 const USER_KEY = "user";
-const URL = process.env.REACT_APP_BASE_URL; 
-console.log(URL); 
-
 class AuthService {
     login(username, password, onSuccess, onError) {
         const body = {
@@ -21,8 +19,20 @@ class AuthService {
             onError);
     }
 
-    logout() {
+    logout(onSuccess, onError) {
+        let evalData = JSON.parse(localStorage.getItem("user")); 
+        const header = evalData.id; 
 
+        return postRequest(
+            `/logout`, 
+            {},
+            (userInfo) => {
+              localStorage.clear(); 
+              onSuccess(userInfo); 
+            },
+            onError, 
+            header, 
+            ); 
     }
 
     register(username, email, password, onSuccess, onError) {
@@ -30,7 +40,7 @@ class AuthService {
             email, username, password
         }
         return postRequest(
-            `${URL}/signup`, 
+            `/signup`, 
             body, 
             userInfo => {
                 onSuccess(userInfo); 
