@@ -5,20 +5,29 @@ import Button from 'react-bootstrap/button'
 import Form from 'react-bootstrap/Form'
 import RangeSlider from 'react-bootstrap-range-slider';
 import reviewService from '../../../services/Review/reviewService'
+
 import Swal  from 'sweetalert2'; 
+import { useAuth } from '../../../hooks/useAuth'
 
 export default function UpdateReview({gameId=null, review=null}) {
-    console.log(review.score); 
+    const reviewData = Object.assign({}, review); 
+    if(!review){
+        reviewData.score = 0; 
+        reviewData.text = ""; 
+    }
     const [show, setShow] = useState(false);
-    const [score, setScore] = useState(review.score); 
-    const [text, setText] = useState(review.text); 
+    const [score, setScore] = useState(reviewData.score); 
+    const [text, setText] = useState(reviewData.text); 
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const userId = JSON.parse(localStorage.getItem("user")).id; 
+    const auth = useAuth(); 
+
+    const userId = auth.user.id; 
 
     const sendRequest = () => {
+        if(!review){}
         reviewService
             .updateReview(
                 score, 
@@ -45,7 +54,6 @@ export default function UpdateReview({gameId=null, review=null}) {
             showCloseButton: true
         })
     }
-
 
     return (
         <>
