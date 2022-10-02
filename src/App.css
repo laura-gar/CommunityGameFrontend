@@ -49,8 +49,9 @@ input.form-control:focus {
 }
 
 .modal-header{
-  background-color:var(--bs-body-bg);
-  color: #0496FF;
+  background-color: var(--background-color);
+  color: var(--title-color); 
+  border: 0;
 }
 
 .form-control{
@@ -58,6 +59,3 @@ input.form-control:focus {
   color: aliceblue; 
 }
 
-.btn-close{
-  background-color: #EF476F;
-}

@@ -9,22 +9,11 @@
     padding: 1px;
     height: 30px;
     width: 30px;
-
 }
 
-.modal-body{
-    background-color: var(--background-color);
-    color: aliceblue;
-}
-
-.modal-title{
-    color: var(--delete-color);
-}
-
-
-.modal-footer{
-    background-color:var(--background-color);
-    color: #0496FF;
+#deleteTitle,
+#deleteIcon{
+    color: var(--delete-color); 
 }
 
 #cancel-button{

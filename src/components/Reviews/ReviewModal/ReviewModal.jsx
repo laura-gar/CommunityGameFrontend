@@ -14,12 +14,15 @@ export default function ReviewModal({gameId=null, review=null, change}) {
     const reviewData = Object.assign({}, review); 
     let buttonId = "updateButton"; 
     let buttonType = <AiFillEdit />; 
+    let componentTitle = "Edit review"
     
     if(!review){
         reviewData.score = 0; 
         reviewData.text = "";
-        let buttonId = "addButton"; 
-        buttonType = 'Add Review' 
+        buttonId = "addButton"; 
+        buttonType = 'Add Review'; 
+        componentTitle = "Create Review"; 
+
     }
     const [show, setShow] = useState(false);
     const [score, setScore] = useState(reviewData.score); 
@@ -71,7 +74,7 @@ export default function ReviewModal({gameId=null, review=null, change}) {
 
         <Modal id="modal-container" show={show} onHide={handleClose}>
             <Modal.Header closeButton>
-            <Modal.Title>Edit Review</Modal.Title>
+            <Modal.Title id="">{componentTitle}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
             <Form>
