@@ -5,3 +5,18 @@
     --ag-odd-row-background-color: rgba(0, 0, 0, 0.0);
     --ag-borders: none;
 }
+
+.ag-paging-panel {
+    border: none;
+}
+
+.ag-cell {
+    display: flex;
+    align-items: center;
+}
+
+.ag-row {
+    background-color: var(--bs-body-bg);
+    border-bottom: #110824 10px solid;
+    border-radius: 0 0px 0px 0;
+}
