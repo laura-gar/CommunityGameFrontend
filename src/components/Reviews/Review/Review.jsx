@@ -1,4 +1,5 @@
 import UserLogo from '../../Logos/UserLogo';
+import ReviewModal from '../ReviewModal/ReviewModal';
 import './Review.css';
 
 function Review({ review }) {
@@ -6,7 +7,7 @@ function Review({ review }) {
         <div className='review-card card p-3 pb-5 mt-2'>
             <div className="row">
                 <div className="col d-flex justify-content-end">
-                    <p>Edit</p>
+                    <p><ReviewModal gameId={review.id} review={review}/></p>
                     <p>Delete</p>
                 </div>
             </div>
