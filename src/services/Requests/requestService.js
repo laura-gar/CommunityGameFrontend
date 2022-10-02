@@ -1,5 +1,4 @@
 const request = (url, params = {}, method = 'GET', onSuccess = null, onError = null, header = null) => {
-    console.log(typeof header); 
     let options = {
         method,
         headers: {
@@ -8,9 +7,8 @@ const request = (url, params = {}, method = 'GET', onSuccess = null, onError = n
     };
 
     if(header != null){
-        options.headers['user-id'] = header; 
+        options.headers['User-id'] = header; 
     }
-
 
     if ('GET' === method) {
         url += '?' + new URLSearchParams(params);
@@ -58,3 +56,4 @@ const request = (url, params = {}, method = 'GET', onSuccess = null, onError = n
 
 export const getRequest = (url, params, onSuccess, onError) => request(url, params, 'GET', onSuccess, onError);
 export const postRequest = (url, body, onSuccess, onError, header) => request(url, body, 'POST', onSuccess, onError, header);
+export const deleteRequest = (url, onSuccess, onError, header) => request(url, null, 'DELETE', onSuccess, onError, header); 

@@ -1,6 +1,7 @@
 import UserLogo from '../../Logos/UserLogo';
 import ReviewModal from '../ReviewModal/ReviewModal';
 import './Review.css';
+import DeleteReview from '../DeleteReview/DeleteReview'
 
 function Review({ review }) {
     return (
@@ -8,7 +9,7 @@ function Review({ review }) {
             <div className="row">
                 <div className="col d-flex justify-content-end">
                     <p><ReviewModal gameId={review.id} review={review}/></p>
-                    <p>Delete</p>
+                    <DeleteReview reviewId={review.id}/>
                 </div>
             </div>
             <div className="row d-flex align-items-center">
