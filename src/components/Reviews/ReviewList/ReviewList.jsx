@@ -22,7 +22,7 @@ function ReviewList({ gameId }) {
             <div className="row mb-4">
                 <div className="col d-flex justify-content-between">
                     <h2>Reviews</h2>
-                    <ReviewModal />
+                    <ReviewModal gameId={gameId} change={setChangesReviews}/>
                 </div>
             </div>
             <div className="row">

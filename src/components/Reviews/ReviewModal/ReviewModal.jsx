@@ -36,7 +36,9 @@ export default function ReviewModal({gameId=null, review=null, change}) {
 
     const sendRequest = () => {
         if(review){
-            updateRequest()
+            updateRequest(); 
+        }else{
+            createRequest(); 
         }
     }
 
@@ -45,6 +47,23 @@ export default function ReviewModal({gameId=null, review=null, change}) {
             score,
             text, 
             review.id, 
+            () => {
+                change(true); 
+                handleClose(); 
+            },
+            (error) => {
+                errorMessage(error.message); 
+            },
+            userId); 
+            change(false); 
+        }
+
+    const createRequest = () => {
+        reviewService.createReview(
+            score,
+            text,
+            gameId, 
+            userId, 
             () => {
                 change(true); 
                 handleClose(); 
