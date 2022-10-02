@@ -1,3 +1,4 @@
+import { useAuth } from "../../hooks/useAuth";
 import { postRequest } from "../Requests/requestService";
 
 const USER_KEY = "user";
@@ -21,6 +22,7 @@ class AuthService {
     logout(onSuccess, onError) {
         let evalData = JSON.parse(localStorage.getItem("user")); 
         const header = evalData.id; 
+
         return postRequest(
             `/logout`, 
             {},
