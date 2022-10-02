@@ -1,11 +1,12 @@
 import React from 'react'
+import UpdateReview from '../UpdateReview/UpdateReview'
 
 function Review({ review }) {
     return (
         <div className='card p-3 pb-4 mt-2'>
             <div className="row">
                 <div className="col d-flex justify-content-end">
-                    <p>Edit</p>
+                    <p><UpdateReview review={review}/></p>
                     <p>Delete</p>
                 </div>
             </div>
