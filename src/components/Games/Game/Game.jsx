@@ -1,8 +1,12 @@
 import React from 'react'
+import TopNavBar from '../../TopNavBar/TopNavBar'
 import GameStat from './Stats/GameStat'
 
 function Game({ game }) {
-    return (
+    return (    
+        <>
+        <TopNavBar />  
+          
         <div className="card p-5">
             <div className="row mb-4">
                 <div className="col p-0 me-3 d-flex align-items-center justify-content-center" style={{ backgroundColor: 'black' }}>
@@ -57,6 +61,7 @@ function Game({ game }) {
                 </div>
             </div>
         </div>
+        </>
     )
 }
 

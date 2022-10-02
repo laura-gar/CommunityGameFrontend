@@ -5,13 +5,12 @@ import {
   BrowserRouter, Route, Routes
 } from "react-router-dom";
 import './App.css';
+import TopNavBar from './components/TopNavBar/TopNavBar';
 import GamesList from './components/Games/GamesList/GamesList';
 import { AuthProvider, RequireAuth } from "./hooks/useAuth";
 import GameView from './views/Games/GameView';
 import Login from './views/Login/Login';
 import SignUp from './views/SignUp/SignUp';
-
-
 
 function App() {
   const [selectedGame, setSelectedGame] = useState();
@@ -19,9 +18,9 @@ function App() {
     <div className="container">
       <div className="row">
         <div className="col">
-
+        
+        <BrowserRouter>
           <AuthProvider>
-            <BrowserRouter>
               <Routes>
                 <Route path={'/login'} element={<Login />} />
                 <Route path={'/signup'} element={<SignUp />} />
@@ -38,8 +37,8 @@ function App() {
                   </RequireAuth>
                 } />
               </Routes>
-            </BrowserRouter>
-          </AuthProvider>
+            </AuthProvider>
+          </BrowserRouter>
         </div>
       </div>
     </div>

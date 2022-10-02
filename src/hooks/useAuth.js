@@ -24,8 +24,14 @@ function useAuthProvider() {
                 onError);
     };
 
-    const logout = () => {
-
+    const logout = (onSuccess, onError) => {
+        return authService
+            .logout(
+                (userInfo) => {
+                    console.log("Logout")
+                    onSuccess(userInfo)
+                }, 
+                onError); 
     };
 
     const register = (username, email, password, onSuccess, onError) => {
