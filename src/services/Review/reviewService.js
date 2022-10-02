@@ -1,4 +1,4 @@
-import { getRequest } from "../Requests/requestService";
+import { getRequest, postRequest, putRequest } from "../Requests/requestService";
 
 
 class ReviewService {
@@ -9,6 +9,16 @@ class ReviewService {
             onSuccess,
             onError);
     }
+
+    updateReview(score, text, gameId, userId, reviewId, onSuccess, onError, header){
+        putRequest(
+            `/reviews/${reviewId}`, 
+            {score, text, gameId, userId}, 
+            onSuccess, 
+            onError, 
+            header); 
+    }
+
 }
 
 export default new ReviewService();
