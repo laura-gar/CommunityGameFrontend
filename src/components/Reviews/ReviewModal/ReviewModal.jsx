@@ -33,9 +33,8 @@ export default function ReviewModal({gameId=null, review=null, change}) {
 
     const sendRequest = () => {
         if(review){
-            updateRequest(); 
+            updateRequest()
         }
-        
     }
 
     const updateRequest = () => {
@@ -46,12 +45,12 @@ export default function ReviewModal({gameId=null, review=null, change}) {
             () => {
                 change(true); 
                 handleClose(); 
-                change(false); 
             },
             (error) => {
                 errorMessage(error.message); 
             },
             userId); 
+            change(false); 
         }
 
     const errorMessage = (message) => {
