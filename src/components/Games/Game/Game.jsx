@@ -4,36 +4,38 @@ import GameStat from './Stats/GameStat'
 function Game({ game }) {
     return (
         <div className="card p-5">
-            <div className="row mb-3">
-                <div className="col d-flex align-items-center justify-content-center">
+            <div className="row mb-4">
+                <div className="col p-0 me-3 d-flex align-items-center justify-content-center" style={{ backgroundColor: 'black' }}>
                     <img src={game.image} alt="Game Screen" style={{ width: '100%' }} />
                 </div>
                 <div className="col px-1">
-                    <div className="row">
+                    <div className="row mb-3">
                         <div className="col">
-                            <h2>{game.title}</h2>
-                            <h4>Description</h4>
-                            <p>{game.description}</p>
+                            <h2 className='mt-2 mb-4'>{game.title}</h2>
+                            <div>
+                                <h4>Description</h4>
+                                <p>{game.description}</p>
+                            </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col">
                             <div className="col-12">
-                                <h4>Platform</h4>
+                                <h5>Platform</h5>
                                 <p>{game.platform}</p>
                             </div>
                             <div className="col-12">
-                                <h4>Release date</h4>
+                                <h5>Release date</h5>
                                 <p>{game.releaseDate}</p>
                             </div>
                         </div>
                         <div className="col">
                             <div className="col-12">
-                                <h4>Genre</h4>
+                                <h5>Genre</h5>
                                 <p>{game.genre}</p>
                             </div>
                             <div className="col-12">
-                                <h4>Updated at</h4>
+                                <h5>Updated at</h5>
                                 <p>{game.updatedAt}</p>
                             </div>
                         </div>
@@ -45,10 +47,10 @@ function Game({ game }) {
                     <GameStat value={game.playingCount} statName={"Players"} />
                 </div>
                 <div className="col">
-                    <GameStat value={game.backlogCount} statName={"Players"} />
+                    <GameStat value={game.backlogCount} statName={"Users about to play"} />
                 </div>
                 <div className="col">
-                    <GameStat value={game.beatCount} statName={"Players"} />
+                    <GameStat value={game.beatCount} statName={"Winners"} />
                 </div>
                 <div className="col">
                     <GameStat value={game.retiredCount} statName={"Defeated players"} />
