@@ -19,6 +19,11 @@ const request = (url, params = {}, method = 'GET', onSuccess = null, onError = n
     }
 
     const handleError = (error) => {
+        try{
+            error = JSON.parse(error); 
+        }catch(e){
+            console.log("No parse error to JSON"); 
+        }
         if (onError) {
             onError(error);
         }

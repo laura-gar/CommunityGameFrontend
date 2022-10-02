@@ -2,9 +2,9 @@ import React from 'react'
 import './SignUp.css';
 import "bootstrap/dist/css/bootstrap.min.css"
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
 import Header from '../../components/Header/Header';
 import Swal  from 'sweetalert2'; 
+import { useAuth } from '../../hooks/useAuth';
 
 export default function SignUp() {
     const auth = useAuth(); 
@@ -26,7 +26,7 @@ export default function SignUp() {
         })
     }
 
-    const errorMessage = (message) => {
+    const errorMessage = (message="Network error. Try again") => {
         Swal.fire({
             title: 'Fail',
             confirmButtonText: 'Ok',
@@ -47,12 +47,10 @@ export default function SignUp() {
             email, 
             password, 
             () => {
-                console.log("Mensaje")
                 welcomeMessage(); 
             },
             (error) => {
                 errorMessage(error.message); 
-                console.log("Error", error.message); 
             }); 
     }
 
@@ -67,7 +65,7 @@ export default function SignUp() {
                             <label htmlFor="emailInput">Email address</label>
                             <input 
                                 type="email" 
-                                className="form-control" 
+                                className ="form-control" 
                                 id="emailInput" 
                                 name="email"
                                 aria-describedby="emailHelp" 
@@ -75,14 +73,14 @@ export default function SignUp() {
                                 />
                             <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
-                        <div v="form-group">
+                        <div className="form-group">
                             <label htmlFor="usernameInput">Username</label>
                             <input 
                                 type="text" 
                                 className="form-control" 
                                 id="usernameInput" 
                                 name="username"
-                                placeholder="Username"   
+                                placeholder="Password"   
                                 />
                         </div>
                         <div className="form-group">
@@ -105,7 +103,7 @@ export default function SignUp() {
                             onClick={() => handleSubmit()}
                             >Sign Up
                         </button>
-                        <p>Already member? <Link to="/login">Log in</Link></p>
+                        <p>Already member? <Link to="/login">Sign up</Link></p>
                     </div>
                 </div>
                 <div id="imageContainer" className='h-100 w-50 '>
