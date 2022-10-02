@@ -48,7 +48,7 @@ const request = (url, params = {}, method = 'GET', onSuccess = null, onError = n
                 return text.length > 0 ? JSON.parse(text) : text; 
             }, 
             handleError)       
-        .then(handleSuccess, handleError);
+        .then(handleSuccess, handleError);   
 };
 
 export const getRequest = (url, params, onSuccess, onError) => request(url, params, 'GET', onSuccess, onError);

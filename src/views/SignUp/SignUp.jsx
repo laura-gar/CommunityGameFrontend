@@ -47,13 +47,13 @@ export default function SignUp() {
             email, 
             password, 
             () => {
+                console.log("Mensaje")
                 welcomeMessage(); 
             },
             (error) => {
                 errorMessage(error.message); 
                 console.log("Error", error.message); 
             }); 
-        
     }
 
    return (
@@ -64,7 +64,7 @@ export default function SignUp() {
                     <h1 className='p-3'>Sign Up</h1>
                     <form id="form" className='p-4' onSubmit={handleSubmit}>
                         <div class="form-group">
-                            <label for="emailInput">Email address</label>
+                            <label htmlFor="emailInput">Email address</label>
                             <input 
                                 type="email" 
                                 class="form-control" 
@@ -76,7 +76,7 @@ export default function SignUp() {
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
                         <div class="form-group">
-                            <label for="usernameInput">Username</label>
+                            <label htmlFor="usernameInput">Username</label>
                             <input 
                                 type="text" 
                                 class="form-control" 
@@ -86,7 +86,7 @@ export default function SignUp() {
                                 />
                         </div>
                         <div class="form-group">
-                            <label for="passwordInput">Password</label>
+                            <label htmlFor="passwordInput">Password</label>
                             <input 
                                 type="password" 
                                 class="form-control" 

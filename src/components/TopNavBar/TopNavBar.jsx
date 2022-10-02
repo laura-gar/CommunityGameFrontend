@@ -9,16 +9,9 @@ import { useAuth } from '../../hooks/useAuth';
 export default function TopNavBar() {
     const auth = useAuth(); 
     const navigateTo = useNavigate();
-    let isLogged = false; 
-    let user; 
-   
-    if(localStorage.getItem("user") !== null){
-        let evalData = JSON.parse(localStorage.getItem("user")); 
-        user = evalData.username; 
-        console.log(evalData); 
-        let isLogged = true; 
-        console.log(isLogged); 
-    }
+
+    const user = auth.user.username; 
+    console.log(user.username); 
         
     function handleSubmit() {
         auth.logout(
