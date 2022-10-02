@@ -1,0 +1,36 @@
+:root{
+    --background-color: #211142;
+    --delete-color: #EF476F;
+    --title-color: #0496FF;
+}
+
+#deleteReviewButton{
+    background-color: var(--delete-color);
+    padding: 1px;
+    height: 30px;
+    width: 30px;
+
+}
+
+.modal-body{
+    background-color: var(--background-color);
+    color: aliceblue;
+}
+
+.modal-title{
+    color: var(--delete-color);
+}
+
+
+.modal-footer{
+    background-color:var(--background-color);
+    color: #0496FF;
+}
+
+#cancel-button{
+    background-color: #110824;
+}
+
+#delete-button{
+    background-color: var(--delete-color);
+}
