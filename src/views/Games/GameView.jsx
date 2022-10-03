@@ -1,8 +1,15 @@
 import React from 'react'
+import { useLoaderData } from 'react-router-dom';
 import Game from '../../components/Games/Game/Game'
 import ReviewList from '../../components/Reviews/ReviewList/ReviewList'
+import gameService from '../../services/Games/gameService';
 
-function GameView({ game }) {
+export async function gameLoader({ params }) {
+    return gameService.getGameById(params.gameId);
+}
+
+function GameView() {
+    const game = useLoaderData();
     return (
         <>
             <div className="row mb-4">

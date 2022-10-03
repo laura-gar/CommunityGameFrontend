@@ -11,6 +11,14 @@ class GameService {
         );
     }
 
+    getGameById(gameId, onSuccess, onError) {
+        return getRequest(
+            '/games/' + gameId,
+            {},
+            onSuccess,
+            onError);
+    }
+
 }
 
 export default new GameService();
