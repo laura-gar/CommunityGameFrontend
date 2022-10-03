@@ -4,6 +4,7 @@ import React, { useCallback, useRef, useState } from 'react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.min.css';
 import { useNavigate } from 'react-router-dom';
+import { formatStringDate } from '../../../services/Formatting/Date/dateFormatting';
 import gameService from '../../../services/Games/gameService';
 import './GamesTable.css';
 
@@ -29,13 +30,13 @@ function GamesTable(props) {
     const [columnDefs] = useState([
         { field: 'title', cellRenderer: GameTitleRender, cellClass: 'ps-0', sortable: true, suppressMovable: true },
         { field: 'platform', sortable: true, suppressMovable: true },
-        { field: 'updatedAt', sortable: true, suppressMovable: true }
+        { field: 'updatedAt', sortable: true, suppressMovable: true, valueFormatter: ({ value }) => formatStringDate(value) }
     ]);
 
     const onGridReady = useCallback(({ api }) => {
         api.sizeColumnsToFit();
         const dataSource = {
-            getRows: ({ startRow, endRow, successCallback, failCallback }) => {
+            getRows: ({ startRow, endRow, successCallback, failCallback, sortModel }) => {
                 const numRequiredGames = endRow - startRow;
                 const requestedPage = endRow / numRequiredGames;
                 gameService.getGames(
@@ -44,6 +45,9 @@ function GamesTable(props) {
                         page: requestedPage,
                     },
                     games => {
+                        if (games) {
+                            games = gameService.sortGamesData(sortModel, games);
+                        }
                         successCallback(games, null);
                     },
                     error => {
@@ -78,7 +82,7 @@ function GamesTable(props) {
                 rowHeight={rowHeight}
             >
             </AgGridReact>
-        </div>
+        </div >
     );
 }
 
