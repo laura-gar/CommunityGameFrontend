@@ -58,14 +58,14 @@ function Login(props) {
                         <img className='user-form-image' src={superMarioImg} alt="Mario Bros Game" />
                     </div>
                     <div className="col pt-5 pb-5 pe-4">
-                        <h1 className='mb-5 text-white'>Login</h1>
+                        <h1 aria-label="Title"className='mb-5 text-white'>Login</h1>
                         <form className='row g-3 w-100' onSubmit={handleSubmit}>
                             <div className="col-12 mb-3">
-                                <label htmlFor="emailInput" className='form-label'>Username</label>
+                                <label aria-label="Username" htmlFor="emailInput" className='form-label'>Username</label>
                                 <input type="text" name="username" className="form-control" id="emailInput" />
                             </div>
                             <div className="col-12 mb-4">
-                                <label htmlFor="passInput" className='form-label'>Password</label>
+                                <label aria-label="Password" htmlFor="passInput" className='form-label'>Password</label>
                                 <input type="password" name="password" className="form-control" id="passInput" />
                             </div>
                             <div className="col-auto">
