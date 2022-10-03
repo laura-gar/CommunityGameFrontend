@@ -18,7 +18,7 @@ export default function ReviewModal({gameId=null, review=null, change}) {
     if(!review){
         reviewData.score = 0; 
         reviewData.text = "";
-        let buttonId = "addButton"; 
+        buttonId = "addButton"; 
         buttonType = 'Add Review' 
     }
     const [show, setShow] = useState(false);
