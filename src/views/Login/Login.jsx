@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import UserFormHeader from '../../components/UserFormHeader/UserFormHeader';
 import { useAuth } from '../../hooks/useAuth';
@@ -45,6 +45,9 @@ function Login(props) {
                     confirmButtonText: 'Close'
                 });
             });
+    }
+    if (auth.user) {
+        return (<Navigate to='/games' />);
     }
     return (
         <div className="col vh-100 d-flex flex-column justify-content-center align-items-center">
