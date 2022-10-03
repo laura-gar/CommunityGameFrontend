@@ -1,8 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import { createBrowserRouter, createRoutesFromElements, Navigate, Route, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, createRoutesFromElements, Navigate, Outlet, Route, RouterProvider } from "react-router-dom";
 import './App.css';
 import GamesList from './components/Games/GamesList/GamesList';
+import TopNavBar from './components/TopNavBar/TopNavBar';
 import { AuthProvider, RequireAuth } from "./hooks/useAuth";
 import GameView, { gameLoader } from './views/Games/GameView';
 import Login from './views/Login/Login';
@@ -12,13 +13,18 @@ function App() {
   return (
     <div className="container">
       <div className="row">
-        <div className="col">
+        <div className="col mb-5">
           <AuthProvider>
             <RouterProvider
               router={
                 createBrowserRouter(
                   createRoutesFromElements(
-                    <Route>
+                    <Route element={
+                      <>
+                        <TopNavBar />
+                        <Outlet />
+                      </>
+                    }>
                       <Route path='/' element={<Navigate to={'/games'} />} />
                       < Route path={'/login'} element={< Login />} />
                       <Route path={'/signup'} element={<SignUp />} />
