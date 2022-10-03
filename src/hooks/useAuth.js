@@ -17,7 +17,6 @@ function useAuthProvider() {
                 username,
                 password,
                 (userInfo) => {
-                    console.log('User info:', userInfo);
                     setUser(userInfo);
                     onSuccess(userInfo);
                 },
@@ -28,8 +27,8 @@ function useAuthProvider() {
         return authService
             .logout(
                 (userInfo) => {
-                    console.log("Logout")
-                    onSuccess(userInfo)
+                    onSuccess(userInfo); 
+                    setUser(null); 
                 }, 
                 onError); 
     };
@@ -41,7 +40,6 @@ function useAuthProvider() {
                 email,
                 password,
                 (userInfo) => {
-                    console.log('User info:', userInfo); 
                     onSuccess(userInfo); 
                 },
                 onError); 
