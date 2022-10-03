@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import reviewService from '../../../services/Review/reviewService';
 import Review from '../Review/Review';
+import ReviewModal from '../ReviewModal/ReviewModal';
 
 function ReviewList({ gameId }) {
     const [reviews, setReviews] = useState([]);
@@ -21,7 +22,7 @@ function ReviewList({ gameId }) {
             <div className="row mb-4">
                 <div className="col d-flex justify-content-between">
                     <h2>Reviews</h2>
-                    <button className='btn btn-primary'>Add Review</button>
+                    <ReviewModal gameId={gameId} change={setChangesReviews}/>
                 </div>
             </div>
             <div className="row">

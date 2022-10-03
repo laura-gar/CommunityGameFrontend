@@ -48,8 +48,8 @@ export default function DeleteReview({reviewId}) {
 
         <Modal id="modal-container" show={show} onHide={handleClose}>
             <Modal.Body>
-                <p id="modal-title" className="text-center"><AiFillDelete />  </p>
-                <Modal.Title className="h1 text-center">Delete Review</Modal.Title>
+                <p id="deleteIcon" className="text-center"><AiFillDelete />  </p>
+                <Modal.Title id="deleteTitle" className="h1 text-center">Delete Review</Modal.Title>
                 <p className="h4 text-center">This will delete your review for this game</p>
             </Modal.Body>
             <Modal.Footer>
