@@ -6,6 +6,7 @@ import 'ag-grid-community/styles/ag-theme-alpine.min.css';
 import { useNavigate } from 'react-router-dom';
 import gameService from '../../../services/Games/gameService';
 import './GamesTable.css';
+import { formatStringDate } from '../../../services/Formatting/Date/dateFormatting';
 
 function GamesTable(props) {
     const navigateTo = useNavigate();
@@ -29,7 +30,7 @@ function GamesTable(props) {
     const [columnDefs] = useState([
         { field: 'title', cellRenderer: GameTitleRender, cellClass: 'ps-0', sortable: true, suppressMovable: true },
         { field: 'platform', sortable: true, suppressMovable: true },
-        { field: 'updatedAt', sortable: true, suppressMovable: true }
+        { field: 'updatedAt', sortable: true, suppressMovable: true, valueFormatter: ({ value }) => formatStringDate(value) }
     ]);
 
     const onGridReady = useCallback(({ api }) => {

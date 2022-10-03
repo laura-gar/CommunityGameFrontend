@@ -1,4 +1,5 @@
 import React from 'react'
+import { formatStringDate } from '../../../services/Formatting/Date/dateFormatting'
 import GameStat from './Stats/GameStat'
 
 function Game({ game }) {
@@ -37,7 +38,7 @@ function Game({ game }) {
                                 </div>
                                 <div className="col-12">
                                     <h5>Updated at</h5>
-                                    <p>{game.updatedAt}</p>
+                                    <p>{formatStringDate(game.updatedAt)}</p>
                                 </div>
                             </div>
                         </div>
