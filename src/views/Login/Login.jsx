@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import UserFormHeader from '../../components/UserFormHeader/UserFormHeader';
 import { useAuth } from '../../hooks/useAuth';
 import './Login.css';
@@ -19,10 +20,30 @@ function Login(props) {
             username,
             password,
             () => {
+                Swal.fire({
+                    title: 'Success!',
+                    text: "Redirecting to Games page...",
+                    icon: 'success',
+                    background: 'var(--bs-body-bg)',
+                    color: 'var(--bs-body-color)',
+                    showConfirmButton: false,
+                    timer: 1700
+                });
                 navigateTo(from, { replace: true });
             },
             (error) => {
-                console.log("Error", error);
+                let message = error.message;
+                if (!message) {
+                    message = "A network error has ocurred, try again in a few minutes";
+                }
+                Swal.fire({
+                    title: 'Invalid credentials!',
+                    text: message,
+                    icon: 'warning',
+                    background: 'var(--bs-body-bg)',
+                    color: 'var(--bs-body-color)',
+                    confirmButtonText: 'Close'
+                });
             });
     }
     return (

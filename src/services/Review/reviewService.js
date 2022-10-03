@@ -1,4 +1,4 @@
-import { getRequest, deleteRequest, putRequest } from "../Requests/requestService";
+import { getRequest, deleteRequest, putRequest, postRequest } from "../Requests/requestService";
 
 
 class ReviewService {
@@ -23,6 +23,15 @@ class ReviewService {
         putRequest(
             `/reviews/${reviewId}`, 
             {score, text}, 
+            onSuccess, 
+            onError, 
+            header); 
+    }
+
+    createReview(score, text, gameId, userId, onSuccess, onError, header) {
+        postRequest(
+            '/reviews', 
+            {score, text, gameId, userId},
             onSuccess, 
             onError, 
             header); 
