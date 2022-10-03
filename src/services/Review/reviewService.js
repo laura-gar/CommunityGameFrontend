@@ -11,7 +11,6 @@ class ReviewService {
     }
 
     deleteReview(reviewId, onSuccess, onError, header) {
-        console.log("reviewId", reviewId); 
         deleteRequest(
             `/reviews/${reviewId}`, 
             onSuccess, 
