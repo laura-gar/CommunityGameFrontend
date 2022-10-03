@@ -6,16 +6,18 @@ import './DeleteReview.css';
 import {AiFillDelete} from 'react-icons/ai'
 import reviewService from '../../../services/Review/reviewService'
 import Swal  from 'sweetalert2'; 
+import { useAuth } from '../../../hooks/useAuth';
 
 
 
-export default function DeleteReview({reviewId}) {
+export default function DeleteReview({reviewId, change}) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const userId = JSON.parse(localStorage.getItem("user")).id; 
+    const auth = useAuth(); 
+    const userId = auth.user.id; 
 
     const sendRequest = () => {
         reviewService
@@ -23,12 +25,14 @@ export default function DeleteReview({reviewId}) {
                 reviewId, 
                 () => {
                     handleClose(); 
+                    change(true); 
                 }, 
                 (error) => {
                     console.log(error); 
                     errorMessage(error.message); 
                 }, 
                 userId); 
+                change(false); 
     }
 
     const errorMessage = (message) => {

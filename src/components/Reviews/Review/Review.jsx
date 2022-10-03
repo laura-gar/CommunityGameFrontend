@@ -15,7 +15,7 @@ function Review({review, change}) {
                 <div className="col d-flex justify-content-end">
                     {sameUser &&  (<>
                                     <p><ReviewModal gameId={review.id} review={review} change={change}/></p>
-                                    <DeleteReview reviewId={review.id}/>
+                                    <DeleteReview reviewId={review.id} change={change}/>
                                     </>  
                     )}   
                 </div>
