@@ -10,6 +10,7 @@ import Login from './views/Login/Login';
 import SignUp from './views/SignUp/SignUp';
 
 function App() {
+  const NotFound = <Navigate to={'/games'} />;
   return (
     <div className="container">
       <div className="row">
@@ -25,7 +26,7 @@ function App() {
                         <Outlet />
                       </>
                     }>
-                      <Route path='/' element={<Navigate to={'/games'} />} />
+                      <Route path='/*' element={NotFound} />
                       < Route path={'/login'} element={< Login />} />
                       <Route path={'/signup'} element={<SignUp />} />
                       <Route
@@ -35,11 +36,15 @@ function App() {
                             <GamesList />
                           </RequireAuth>
                         } />
-                      <Route path={'/games/:gameId'} loader={gameLoader} element={
-                        <RequireAuth>
-                          <GameView />
-                        </RequireAuth>
-                      } />
+                      <Route
+                        path={'/games/:gameId'}
+                        loader={gameLoader}
+                        element={
+                          <RequireAuth>
+                            <GameView />
+                          </RequireAuth>
+                        }
+                        errorElement={NotFound} />
                     </Route>
                   )
                 )}
